@@ -8,6 +8,8 @@ build: zhwiki_pinyin.dict.yaml
 
 clean:
 	rm -f zhwiki_pinyin.raw
+	rm -f $(FILENAME).1 $(FILENAME).2 $(FILENAME).3 $(FILENAME).4
+	rm -f $(FILENAME).split
 	rm -f $(FILENAME).out
 	rm -f $(FILENAME)
 	rm -f $(FILENAME).gz
@@ -25,6 +27,7 @@ $(FILENAME).out: $(FILENAME)
 
 $(FILENAME).split: $(FILENAME).out
 	split -n l/4 $(FILENAME).out
+	touch $(FILENAME).split
 
 $(FILENAME).1: $(FILENAME).split
 	opencc -c /usr/share/opencc/t2s.json -i xaa -o $(FILENAME).1
@@ -44,7 +47,6 @@ $(FILENAME).4: $(FILENAME).split
 	
 zhwiki_pinyin.raw: | $(FILENAME).1 $(FILENAME).2 $(FILENAME).3 $(FILENAME).4
 	cat $(FILENAME).1 $(FILENAME).2 $(FILENAME).3 $(FILENAME).4 > zhwiki_pinyin.raw
-	rm -f $(FILENAME).1 $(FILENAME).2 $(FILENAME).3 $(FILENAME).4
 
 zhwiki_pinyin.dict.yaml: | zhwiki_pinyin.raw
 	printf $(YAML_HEADER) > zhwiki_pinyin.dict.yaml
@@ -55,4 +57,6 @@ install: zhwiki_pinyin.dict.yaml
 
 uninstall:
 	rm -f $(DESTDIR)/usr/share/rime-data/zhwiki_pinyin.dict.yaml 
+
+.PHONY: all build clean install uninstall
 
