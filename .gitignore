@@ -1,2 +1,4 @@
 zhwiki_pinyin.dict.yaml
+*.gz
+*.xz
 
