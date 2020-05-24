@@ -1,4 +1,10 @@
 zhwiki_pinyin.dict.yaml
+zhwiki_pinyin.out
+zhwiki_pinyin.raw
+zhwiki_pinyin.sc
+zhwiki-*-all-titles-in-ns0
 *.gz
 *.xz
+*.zst
+*.txt
 
