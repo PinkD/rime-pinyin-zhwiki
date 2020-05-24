@@ -1,5 +1,4 @@
 FILENAME=zhwiki-latest-all-titles-in-ns0
-
 YAML_HEADER='\n---\nname: zhwiki_pinyin\nversion: "2020.05.23"\n...\n\n\n'
 
 all: build
@@ -8,6 +7,7 @@ build: zhwiki_pinyin.dict.yaml
 
 clean:
 	rm -f zhwiki_pinyin.raw
+	rm -f zhwiki_pinyin.dict.yaml
 	rm -f $(FILENAME).1 $(FILENAME).2 $(FILENAME).3 $(FILENAME).4
 	rm -f $(FILENAME).split
 	rm -f $(FILENAME).out
@@ -23,7 +23,7 @@ $(FILENAME): $(FILENAME).gz
 	gzip -k -d $(FILENAME).gz
 
 $(FILENAME).out: $(FILENAME)
-	grep -P $$'^[\u4e00-\u9fa5]+$$' $(FILENAME) > $(FILENAME).out
+	grep -P $$'^[\u4e00-\u9fa5]{2,8}$$' $(FILENAME) > $(FILENAME).out
 
 $(FILENAME).split: $(FILENAME).out
 	split -n l/4 $(FILENAME).out
