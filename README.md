@@ -48,3 +48,10 @@ redeploy RIME and enjoy
 
 This project is inspired by [felixonmars/fcitx5-pinyin-zhwiki](https://github.com/felixonmars/fcitx5-pinyin-zhwiki)
 
+## Release note
+
+- 0.2: 
+  - remove manually convert tc to sc with opencc because RIME will do that automatically
+  - limit word len from 2 to 8
+- 0.1: first release
+
