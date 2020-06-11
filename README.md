@@ -5,7 +5,8 @@
 ```bash
 git clone https://github.com/PinkD/rime-pinyin-zhwiki
 cd rime-pinyin-zhwiki
-make -j4 && make install
+make && make install
+# or you can use `make VERSION=20200601` to build specified version instead of the latest
 ```
 
 > NOTE: you need to modify install dir in Makefile depending on your os release

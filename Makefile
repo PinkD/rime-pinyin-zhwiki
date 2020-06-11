@@ -1,4 +1,5 @@
-FILENAME=zhwiki-latest-all-titles-in-ns0
+VERSION=latest
+FILENAME=zhwiki-$(VERSION)-all-titles-in-ns0
 YAML_HEADER='\n---\nname: zhwiki_pinyin\nversion: "2020.05.23"\n...\n\n\n'
 INSTALL_DIR=/usr/share/rime-data
 
@@ -15,7 +16,7 @@ clean:
 download: $(FILENAME).gz
 
 $(FILENAME).gz:
-	wget https://dumps.wikimedia.org/zhwiki/latest/$(FILENAME).gz
+	wget https://dumps.wikimedia.org/zhwiki/$(VERSION)/$(FILENAME).gz
 
 $(FILENAME): $(FILENAME).gz
 	gzip -k -d $(FILENAME).gz
